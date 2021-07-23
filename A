@@ -1,0 +1,36 @@
+import sys
+
+from kivy.lang import Builder
+from kivy.uix.screenmanager import Screen
+
+from kivymd.app import MDApp
+
+class DemoAnti(MDApp):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+   
+        self.screen = Builder.load_file( 'st.kv' )
+
+    def button(self):
+        sys.exit(1)
+        
+    def build(self):
+        return self.screen
+
+if __name__ == '__main__':
+    DemoAnti().run()
+    #:import utils kivy.utils
+
+Screen:
+    name: 'antichristone'
+
+    FitImage:
+        source: 'test.jpg'
+
+    MDRoundFlatButton:
+        text: "Exit"
+        on_release: app.button()
+        pos_hint: {"center_x": 0.5, "center_y": 0.2}
+
+        md_bg_color: utils.get_color_from_hex("#c21010")
+        text_color: utils.get_color_from_hex("#ffffff")
